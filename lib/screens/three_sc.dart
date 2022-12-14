@@ -1,20 +1,40 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intermeidiate/screens/fourth_sc.dart';
 
 import '../utils/constant.dart';
 import '../widgets/default_button.dart';
 
-class ThirdScreen extends StatelessWidget {
+class ThirdScreen extends StatefulWidget {
   const ThirdScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ThirdScreen> createState() => _ThirdScreenState();
+}
+
+class _ThirdScreenState extends State<ThirdScreen> {
+  String title = 'Standard yearly';
+  String subtitle = 'Billed monthly';
+  int price = 1;
+  int? isSlected;
+  // bool colors = true;
+  // bool colours = true;
+
+  @override
+  void initState() {
+    super.initState();
+    // colors = colors;
+    // colours = colours;
+  }
+
+  int? selectedIndex;
+  //int index = 0;
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
 
     double screenWidth = MediaQuery.of(context).size.width;
-    String title = 'Standard yearly';
-    String subtitle = 'Billed monthly';
-    int price = 1;
     return Scaffold(
       backgroundColor: color1,
       body: SingleChildScrollView(
@@ -87,123 +107,235 @@ class ThirdScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Card(
-                color: color1,
-                shape: RoundedRectangleBorder(
-                    side: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10)),
-                child: ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.white,
-                          ),
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Icon(
-                        Icons.circle,
-                        size: 25,
-                        color: color1,
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    title,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  subtitle: Text(
-                    subtitle,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  trailing: Wrap(
-                    spacing: 5,
-                    children: [
-                      Text(
-                        '\$$price',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 23,
-                            color: Colors.white),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 5),
-                        child: Text(
-                          'USD',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Card(
-                color: color1,
-                shape: RoundedRectangleBorder(
-                    side: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10)),
-                child: ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.white,
-                          ),
-                          borderRadius: BorderRadius.circular(100)),
-                      child: const Icon(
-                        Icons.check,
-                        size: 25,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    title,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  subtitle: Text(
-                    subtitle,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  trailing: Column(
-                    children: [
-                      Container(
-                        //margin: EdgeInsets.all(0.0),
-                        color: Colors.white,
-                        child: const Text(' Most Popular '),
-                      ),
-                      Wrap(
-                        spacing: 5,
-                        children: [
-                          Text(
-                            '\$$price',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 23,
-                                color: Colors.white),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 5),
-                            child: Text(
-                              'USD',
-                              style: TextStyle(color: Colors.white),
+            // ListView.builder(
+            //     shrinkWrap: true,
+            //     itemCount: 2,
+            //     itemBuilder: (_, index) {
+            //       return Padding(
+            //         padding: const EdgeInsets.all(10.0),
+            //         child: Card(
+            //           color: colours ? color1 : Colors.white,
+            //           shape: RoundedRectangleBorder(
+            //               side: const BorderSide(color: Colors.white),
+            //               borderRadius: BorderRadius.circular(10)),
+            //           child: ListTile(
+            //             // tileColor: selectedIndex == index
+            //             //     ? Colors.white
+            //             //     : Colors.transparent,
+            //             onTap: () {
+            //               setState(() {
+            //                 colours = !colours;
+            //                 selectedIndex = index;
+            //               });
+            //             },
+            //             leading: Padding(
+            //               padding: const EdgeInsets.only(top: 5),
+            //               child: Container(
+            //                 decoration: BoxDecoration(
+            //                     border: Border.all(
+            //                       width: 2,
+            //                       color: colours ? Colors.white : color1,
+            //                     ),
+            //                     borderRadius: BorderRadius.circular(100)),
+            //                 child: Icon(
+            //                   isSlected ? Icons.circle : Icons.check,
+            //                   size: 25,
+            //                   color: color1,
+            //                 ),
+            //               ),
+            //             ),
+            //             title: Text(
+            //               title,
+            //               style:
+            //                   TextStyle(color: colours ? Colors.white : color1),
+            //             ),
+            //             subtitle: Text(
+            //               subtitle,
+            //               style:
+            //                   TextStyle(color: colours ? Colors.white : color1),
+            //             ),
+            //             trailing: Column(
+            //               children: [
+            //                 Container(
+            //                   //margin: EdgeInsets.all(0.0),
+            //                   color: colours ? Colors.white : color1,
+            //                   child: const Text(' Most Popular '),
+            //                 ),
+            //                 Wrap(
+            //                   spacing: 5,
+            //                   children: [
+            //                     Text(
+            //                       '\$$price',
+            //                       style: TextStyle(
+            //                           fontWeight: FontWeight.w500,
+            //                           fontSize: 23,
+            //                           color: colours ? Colors.white : color1),
+            //                     ),
+            //                     Padding(
+            //                       padding: const EdgeInsets.only(top: 5),
+            //                       child: Text(
+            //                         'USD',
+            //                         style: TextStyle(
+            //                             color: colours ? Colors.white : color1),
+            //                       ),
+            //                     )
+            //                   ],
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       );
+            //     }),
+            ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Card(
+                      color: isSlected == 1 ? Colors.white : color1,
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              color: isSlected == 1 ? color1 : Colors.white),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListTile(
+                        onTap: () {
+                          setState(() {
+                            isSlected = 1;
+                            log("isSlected");
+                          });
+                        },
+                        leading: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 2,
+                                  color: isSlected == 1 ? color1 : Colors.white,
+                                ),
+                                borderRadius: BorderRadius.circular(100)),
+                            child: Icon(
+                              isSlected == 1 ? Icons.check : Icons.circle,
+                              size: 25,
+                              color: isSlected == 1 ? color1 : Colors.white,
                             ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                          ),
+                        ),
+                        title: Text(
+                          title,
+                          style: TextStyle(
+                              color: isSlected == 1 ? color1 : Colors.white),
+                        ),
+                        subtitle: Text(
+                          subtitle,
+                          style: TextStyle(
+                              color: isSlected == 1 ? color1 : Colors.white),
+                        ),
+                        trailing: Wrap(
+                          spacing: 5,
+                          children: [
+                            Text(
+                              '\$$price',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 23,
+                                  color:
+                                      isSlected == 1 ? color1 : Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(
+                                'USD',
+                                style: TextStyle(
+                                    color: isSlected == "1"
+                                        ? color1
+                                        : Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      )),
                 ),
-              ),
+                Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      color: isSlected == 2 ? Colors.white : color1,
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              color: isSlected == 2 ? color1 : Colors.white),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListTile(
+                        // selected: isSlected,
+                        onTap: () {
+                          setState(() {
+                            isSlected = 2;
+                            log("isSlected");
+                          });
+                        },
+                        leading: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 2,
+                                  color: isSlected == 2 ? color1 : Colors.white,
+                                ),
+                                borderRadius: BorderRadius.circular(100)),
+                            child: Icon(
+                              isSlected == 2 ? Icons.check : Icons.circle,
+                              size: 25,
+                              color: isSlected == 2 ? color1 : Colors.white,
+                            ),
+                          ),
+                        ),
+                        title: Text(
+                          title,
+                          style: TextStyle(
+                              color: isSlected == 2 ? color1 : Colors.white),
+                        ),
+                        subtitle: Text(
+                          subtitle,
+                          style: TextStyle(
+                              color: isSlected == 2 ? color1 : Colors.white),
+                        ),
+                        trailing: Column(
+                          children: [
+                            Container(
+                              //margin: EdgeInsets.all(0.0),
+                              color: isSlected == 2 ? color1 : Colors.white,
+                              child: const Text(' Most Popular '),
+                            ),
+                            Wrap(
+                              spacing: 5,
+                              children: [
+                                Text(
+                                  '\$$price',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 23,
+                                      color: isSlected == 2
+                                          ? color1
+                                          : Colors.white),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    'USD',
+                                    style: TextStyle(
+                                        color: isSlected == 2
+                                            ? color1
+                                            : Colors.white),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ))
+              ],
             ),
+
             Padding(
               padding: const EdgeInsets.all(35),
               child: RichText(
